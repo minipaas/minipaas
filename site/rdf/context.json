@@ -1,0 +1,21 @@
+{
+    "@context": {
+        "cc": "http://creativecommons.org/ns#",
+        "dc": "http://purl.org/dc/terms/",
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "mini": "http://minipaas.org/rdf/ontology#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "vann": "http://purl.org/vocab/vann/",
+ 	    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+        "title": { "@id": "dc:title", "@type": "rdfs:Literal" },
+        "url": { "@id": "foaf:homepage", "@type": "@id" },
+        "icon": { "@id": "foaf:logo" },
+        "publisher": { "@id": "dc:publisher", "@type": "dc:Agent" },
+        "license": { "@id": "mini:license", "@type": "mini:License" },
+        "identifier": { "@id": "mini:licenseIdentifier", "@type": "xsd:string" },
+        "storage": { "@id": "mini:storage", "@type": "xsd:string" }
+    }
+}

@@ -1,0 +1,41 @@
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix mini: <http://minipaas.org/rdf/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://minipaas.org/rdf/ontology#> a owl:Ontology ;
+    dc:creator "Kuno Woudt <kuno@frob.nl>" ;
+    dc:modified "2014-05-16" ;
+    vann:preferredNamespacePrefix "mini" ;
+    vann:preferredNamespaceUri "http://minipaas.org/rdf/ontology#" .
+
+mini:Service a owl:Class ;
+    rdfs:label "Minipaas service description"@en .
+
+mini:storage a owl:DatatypeProperty ;
+    rdfs:label "requires storage plugin"@en ;
+    rdfs:comment "This property specifies which storage plugin(s) are required to run the Minipaas packaged service."@en .
+
+mini:License a owl:Class ;
+    rdfs:label "License"@en ;
+    rdfs:comment "This is the license under which a creative work is made available."@en .
+    rdfs:subClassOf dc:LicenseDocument .
+
+mini:license a owl:ObjectProperty ;
+    rdfs:label "has license"@en ;
+    rdfs:subPropertyOf dc:license, cc:license ;
+    rdfs:domain mini:Service ;
+    rdfs:range mini:License .
+
+mini:licenseIdentifier a owl:DatatypeProperty ;
+    rdfs:label "License ID"@en ;
+    rdfs:comment "This is the license identifier for a (typically copyright) license. It must be a license short name The license identifier must be a license short name as used by debian, See https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/#license-short-name."@en ;
+    rdfs:subPropertyOf dc:identifier ;
+    rdfs:domain mini:License ;
+    rdfs:range xsd:string .
+
