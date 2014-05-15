@@ -1,0 +1,37 @@
+<svg version="1.1"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     x="0px" y="0px" width="256px" height="256px" viewBox="0 0 256 256"
+     enable-background="new 0 0 256 256"
+     xml:space="preserve">
+
+  <style>
+   text {
+       fill: #444;
+       stroke: #444;
+       font-size: 56px;
+       font-family: "Liberation Sans", "DejaVu Sans", Helvetica, sans-serif;
+       text-anchor: middle;
+   }
+
+   rect {
+       stroke-width: 1px;
+       stroke: #444;
+   }
+  </style>
+
+  <g transform="translate(0,32)">
+    <text x="38" y="48">M</text>
+    <text x="96" y="48">I</text>
+    <text x="160" y="48">N</text>
+    <text x="224" y="48">I</text>
+    <text x="32" y="104">P</text>
+    <text x="96" y="104">A</text>
+    <text x="160" y="104">A</text>
+    <text x="224" y="104">S</text>
+    <rect fill="#b6ff00" x="16"  y="120" width="32" height="32" />
+    <rect fill="#ffca1b" x="80"  y="120" width="32" height="32" />
+    <rect fill="#ff0092" x="144" y="120" width="32" height="32" />
+    <rect fill="#228dff" x="208" y="120" width="32" height="32" />
+  </g>
+</svg>
