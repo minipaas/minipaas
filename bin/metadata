@@ -9,67 +9,11 @@ see LICENSE.txt for more information.
 
 */
 
-var _ = require('underscore');
-var colors = require('colors');
-var Docker = require('dockerode');
-var when = require('when');
+var minipaas = require('../');
 
-var docker = new Docker({socketPath: '/var/run/docker.sock'});
-
-function parse_env(env) {
-    return _(env).reduce(function (memo, item, idx) {
-        var parts = item.split('=');
-        memo[parts[0]] = parts.length > 1 ? parts[1] : null;
-        return memo;
-    }, {});
-}
-
-function minipaas_info(image) {
-    var OK = image.env.minipaas_version === "1" ? "■ ".green : "■ ".red;
-    var id = "(" + image.info.Id.slice(0,12) + ")";
-    console.log(OK, image.info.RepoTags.join(", "), id.grey)
-}
-
-function inspect_image(image_info) {
-    var deferred = when.defer();
-
-    docker.getImage(image_info.Id).inspect(function (err, data) {
-        if (err) {
-            return deferred.reject(err);
-        };
-
-        if (!data.config) {
-            return deferred.resolve(null);
-        }
-
-        var environment = parse_env(data.config.Env);
-        if (environment.minipaas_version) {
-            return deferred.resolve ({ 'info': image_info, 'data': data, 'env': environment });
-        }
-
-        return deferred.resolve(null);
-    });
-
-    return deferred.promise;
-}
-
-function list_images() {
-    var deferred = when.defer();
-
-    docker.listImages(function (err, images) {
-        if (err) {
-            return deferred.reject(err);
-        }
-
-        deferred.resolve(when.map(images, inspect_image));
-    });
-
-    return deferred.promise;
-};
-
-list_images().then(
+minipaas.services().then(
     function (data) {
-        _(data).compact().map(minipaas_info);
+        data.map(minipaas.info);
     },
     function (err) {
         console.log("ERROR:", err);

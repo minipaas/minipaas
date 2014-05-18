@@ -2,7 +2,7 @@
   "name": "minipaas",
   "version": "0.1.0",
   "description": "A tiny platform as a service.",
-  "main": "index.js",
+  "main": "./lib/minipaas.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
