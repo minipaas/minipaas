@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+/* -*- mode: Javascript -*-
+
+bin/metadata — this file is part of minipaas.
+Copyright 2014 Kuno Woudt <kuno@frob.nl>
+
+This program is licensed under copyleft-next version 0.3.0,
+see LICENSE.txt for more information.
+
+*/
+
+var _ = require('underscore');
+var colors = require('colors');
+var Docker = require('dockerode');
+
+var docker = new Docker({socketPath: '/var/run/docker.sock'});
+
+docker.listImages(function (err, images) {
+    if (err) {
+        console.log ("ERROR:", err);
+    } else {
+        images.forEach(function (imageInfo) {
+            var data = docker.getImage(imageInfo.Id).inspect(function (err, data) {
+                if (err) {
+                    console.log ("ERROR:", err);
+                } else {
+                    var cfg = data.config;
+                    if (cfg) {
+                        var environment = _(cfg.Env).reduce(function (memo, item, idx) {
+                            var parts = item.split('=');
+                            memo[parts[0]] = parts.length > 1 ? parts[1] : null;
+                            return memo;
+                        }, {});
+
+                        if (environment.minipaas_version) {
+                            var OK = environment.minipaas_version === "1" ? "■ ".green : "■ ".red;
+                            var id = "(" + imageInfo.Id.slice(0,12) + ")";
+                            console.log(OK, imageInfo.RepoTags.join(", "), id.grey)
+                        }
+                    }
+                }
+            });
+        });
+    }
+});
