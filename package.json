@@ -4,9 +4,6 @@
     "description": "A tiny platform as a service.",
     "main": "./lib/minipaas.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "scripts": {
 	    "test": "bin/.test"
     },
     "bin": {
