@@ -1,29 +1,30 @@
 {
-    "name": "minipaas",
-    "version": "0.1.0",
-    "description": "A tiny platform as a service.",
-    "main": "./lib/minipaas.js",
-    "scripts": {
-	    "test": "bin/.test"
-    },
-    "bin": {
-        "minipaas-metadata": "./bin/metadata"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/minipaas/minipaas.git"
-    },
-    "author": "Kuno Woudt <kuno@frob.nl>",
-    "license": "copyleft-next 0.3.0",
-    "bugs": {
-        "url": "https://github.com/minipaas/minipaas/issues"
-    },
-    "homepage": "http://minipaas.org",
-    "dependencies": {
-        "colors": "^0.6.2",
-        "dockerode": "^1.3.0",
-        "jshint": "^2.5.1",
-        "underscore": "^1.6.0",
-        "when": "^3.2.0"
-    }
+  "name": "minipaas",
+  "version": "0.1.0",
+  "description": "A tiny platform as a service.",
+  "main": "./lib/minipaas.js",
+  "scripts": {
+    "test": "bin/.test"
+  },
+  "bin": {
+    "minipaas-metadata": "./bin/metadata"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/minipaas/minipaas.git"
+  },
+  "author": "Kuno Woudt <kuno@frob.nl>",
+  "license": "copyleft-next 0.3.0",
+  "bugs": {
+    "url": "https://github.com/minipaas/minipaas/issues"
+  },
+  "homepage": "http://minipaas.org",
+  "dependencies": {
+    "colors": "^0.6.2",
+    "dockerode": "^1.3.0",
+    "jshint": "^2.5.1",
+    "minimist": "^0.1.0",
+    "underscore": "^1.6.0",
+    "when": "^3.2.0"
+  }
 }
