@@ -9,13 +9,17 @@ see LICENSE.txt for more information.
 
 */
 
+var _ = require('underscore');
 var minipaas = require('../');
 var argv = require('minimist')(process.argv.slice(2));
+var sequence = require('when/sequence');
 
 minipaas.services(argv['_']).then(
     function (data) {
         if (data.length) {
-            data.map(minipaas.info);
+            data.forEach(function (elem) {
+                elem.printInfo();
+            });
         } else {
             console.log("No matches.");
         }
