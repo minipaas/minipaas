@@ -1,14 +1,21 @@
 #!/bin/bash
 
+# This file is part of minipaas.
+# Copyright 2014 Kuno Woudt <kuno@frob.nl>
+
+# This program is licensed under copyleft-next version 0.3.0,
+# see LICENSE.txt for more information.
+
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 cd "$DIR/.."
 
-JSHINT="node_modules/jshint/bin/jshint lib/"
-# MOCHA="node_modules/mocha/bin/mocha --ui tdd --reporter spec"
+JSHINT="node_modules/jshint/bin/jshint lib/*.js"
+MOCHA="node_modules/mocha/bin/mocha --ui tdd --reporter spec"
 
-#$JSHINT && $MOCHA
-$JSHINT
+$JSHINT && $MOCHA
+
+
 

@@ -1,0 +1,10 @@
+{
+    "title": "Minipaas: Hello, World!",
+    "url": "http://minipaas.org",
+    "publisher": { "title": "frob.nl", "url": "https://frob.nl/" },
+    "license": {
+        "identifier": "copyleft-next-0.3",
+        "url": "https://raw.github.com/richardfontana/copyleft-next/master/Releases/copyleft-next-0.3.0"
+    },
+    "icon": "hello-world.svg"
+}

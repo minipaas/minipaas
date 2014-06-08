@@ -10,12 +10,13 @@
         "vann": "http://purl.org/vocab/vann/",
  	    "xsd": "http://www.w3.org/2001/XMLSchema#",
 
-        "title": { "@id": "dc:title", "@type": "rdfs:Literal" },
-        "url": { "@id": "foaf:homepage", "@type": "@id" },
         "icon": { "@id": "foaf:logo" },
-        "publisher": { "@id": "dc:publisher", "@type": "dc:Agent" },
-        "license": { "@id": "mini:license", "@type": "mini:License" },
         "identifier": { "@id": "mini:licenseIdentifier", "@type": "xsd:string" },
-        "storage": { "@id": "mini:storage", "@type": "xsd:string" }
+        "license": { "@id": "mini:license", "@type": "mini:License" },
+        "publisher": { "@id": "dc:publisher", "@type": "dc:Agent" },
+        "rdf:type": { "@type": "@id" },
+        "storage": { "@id": "mini:storage", "@type": "xsd:string" },
+        "title": { "@id": "dc:title", "@type": "rdfs:Literal" },
+        "url": { "@id": "foaf:homepage", "@type": "@id" }
     }
 }
