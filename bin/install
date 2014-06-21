@@ -11,16 +11,25 @@ see LICENSE.txt for more information.
 
 var minipaas = require('../');
 var argv = require('minimist')(process.argv.slice(2));
+var _ = require('underscore');
 
-minipaas.services(argv['_']).then(function (data) {
+minipaas.pull(argv['_']).then(function (data) {
+    var repotags = _(data).map(function (item, idx) { return item.repotag; });
+    console.log('pull done, repotags:', repotags);
+
+    return minipaas.services(repotags);
+}).then(function (data) {
     if (data.length) {
         data.forEach(function (elem) {
             elem.printInfo();
         });
+        process.exit(0);
     } else {
-        console.log("No matches.");
+        console.log("No matches.", data);
+        process.exit(1);
     }
 }).catch(function (err) {
-    console.log("ERROR:", err);
+    console.log(err.toString());
+    process.exit(1);
 });
 
