@@ -9,13 +9,74 @@ LICENSE.txt for more information.
 
 */
 
-var metadata = require('../lib/metadata.js');
 var assert = require('assert');
+var fail = require('./fail.js');
+var metadata = require('../lib/metadata.js');
 var N3 = require('n3');
+var retry = require('../lib/retry.js');
+var when = require('when');
 
 var ns = metadata.ns;
 
+suite ('Promises', function () {
+    "use strict";
+
+    suite ('fail', function () {
+
+        test ('success', function (done) {
+            fail.reset(0);
+            fail.attempt().then(function (info) {
+                assert.ok (info.success);
+            }).then(done, done);
+        });
+
+        test ('fail twice', function (done) {
+            fail.reset(2);
+            fail.attempt().then(function (info) {
+                // first attempt failed
+                assert.ok (false);
+            }, function (err) {
+                assert.ok (err instanceof Error);
+                // let's try again
+                fail.attempt().then(function (info) {
+                    // second attempt failed
+                    assert.ok (false);
+                }, function (err) {
+                    assert.ok (err instanceof Error);
+                    // let's try again
+                    fail.attempt().then(function (info) {
+                        // third attempt succeeded
+                        assert.ok (info.success);
+                    }).then(done, done);
+                });
+            });
+        });
+    });
+
+    suite ('retry', function () {
+
+        test ('success', function (done) {
+            fail.reset(0)
+            retry(fail.attempt, [ "there is no try" ]).then(function (info) {
+                assert.ok(info.success);
+                assert.equal(info.arg, "there is no try");
+            }).then(done, done);
+        });
+
+        test ('fail twice', function (done) {
+            fail.reset(2)
+            retry(fail.attempt, [ "there is no try" ]).then(function (info) {
+                assert.ok(info.success);
+                assert.equal(info.arg, "there is no try");
+            }).then(done, done);
+        });
+
+    });
+});
+
 suite ('Metadata', function () {
+    "use strict";
+
     suite ('JSON-LD', function () {
 
         test ('parse', function (done) {
