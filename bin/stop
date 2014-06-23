@@ -12,21 +12,16 @@ see LICENSE.txt for more information.
 var minipaas = require('../');
 var argv = require('minimist')(process.argv.slice(2));
 
-minipaas.pull(argv._).then(function (services) {
+minipaas.stop(argv._).then(function (services) {
     if (services.length) {
         services.forEach(function (service) {
             if (service._minipaas_version) {
-                service.unpack().then(function () {
-                    service.printInfo();
-                });
+                service.printInfo();
             }
         });
     } else {
         console.log("No matches.");
     }
-}).progress(function (chunk) {
-    // console.log('progress:', chunk.toString());
 }).catch(function (err) {
     console.log("ERROR:", err);
 });
-

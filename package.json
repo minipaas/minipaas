@@ -21,6 +21,7 @@
   "homepage": "http://minipaas.org",
   "dependencies": {
     "colors": "^0.6.2",
+    "interval-to-human": "^0.1.1",
     "jshint": "^2.5.1",
     "jsonld": "^0.2.10",
     "minimist": "^0.1.0",

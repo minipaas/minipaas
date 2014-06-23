@@ -11,7 +11,6 @@ see LICENSE.txt for more information.
 
 var minipaas = require('../');
 var argv = require('minimist')(process.argv.slice(2));
-var when = require('when');
 
 minipaas.services(argv._).then(function (services) {
     if (services.length) {
