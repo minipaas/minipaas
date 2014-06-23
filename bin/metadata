@@ -17,9 +17,7 @@ minipaas.services(argv._).then(function (services) {
     if (services.length) {
         services.forEach(function (service) {
             if (service._minipaas_version) {
-                // service.unpack().then(function () {
-                    service.printInfo();
-                // });
+                service.printInfo();
             } else if (argv.all) {
                 service.printInfo();
             }
@@ -30,4 +28,3 @@ minipaas.services(argv._).then(function (services) {
 }).catch(function (err) {
     console.log("ERROR:", err);
 });
-
