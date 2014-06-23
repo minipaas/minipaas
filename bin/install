@@ -13,23 +13,21 @@ var minipaas = require('../');
 var argv = require('minimist')(process.argv.slice(2));
 var _ = require('underscore');
 
-minipaas.pull(argv['_']).then(function (data) {
-    var repotags = _(data).map(function (item, idx) { return item.repotag; });
-    console.log('pull done, repotags:', repotags);
-
-    return minipaas.services(repotags);
-}).then(function (data) {
-    if (data.length) {
-        data.forEach(function (elem) {
-            elem.printInfo();
+minipaas.pull(argv._).then(function (services) {
+    if (services.length) {
+        services.forEach(function (service) {
+            if (service._minipaas_version) {
+                service.unpack().then(function () {
+                    service.printInfo();
+                });
+            }
         });
-        process.exit(0);
     } else {
-        console.log("No matches.", data);
-        process.exit(1);
+        console.log("No matches.");
     }
+}).progress(function (chunk) {
+    // console.log('progress:', chunk.toString());
 }).catch(function (err) {
-    console.log(err.toString());
-    process.exit(1);
+    console.log("ERROR:", err);
 });
 
